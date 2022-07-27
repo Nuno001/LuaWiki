@@ -1,42 +1,36 @@
-# Luvit ReQL
+# LuaSQL
 
-## Support
-For support, please join [the discord support server.](https://discord.gg/n6DUK36)
+## Suporte
+Para obter suporte, entre no [servidor de suporte do discord.](https://discord.gg/M8gwNKqaXC)
 
-# Connecting
-To open a connection with luvit-reql you can do the following example.   
-**Caution. If ran outside a coroutine, a callback function MUST be supplied on reql.connect**
+# Conectar
+Para abrir uma conexão com SQLUA você pode fazer o seguinte exemplo.   
 ```lua
-local luvitReQL = require('luvit-reql')
-local connection = luvitReQL.connect(options, callback)
+require "luasql.mysql"
+env = assert (luasql.mysql())
+con = assert (env:connect"meu_db")
+for id, name, address in rows (con, "select * from contacts") do
+  print (string.format ("%s: %s", name, address))
+end
 ```
 
-### Options
-| Setting   | Default   | Type     |
-| --------- | --------- | -------- |
-| address   | 127.0.0.1 | string   |
-| port      | 28015     | number   |
-| user      | admin     | string   |
-| password  |           | string   |
-| db        | test      | string   |
-| reconnect | false     | boolean  |
-| reusable  | false     | boolean  |
-| debug     | false     | boolean  |
-
 ### Callback
-The callback must be a function and will be called with the connection after the driver has successfully connected to RethinkDB
-* Only called for Async Mode (reql.connect not called in a coroutine); ignored for Sync Mode (reql.connect called in a coroutine)
+Um exemplo simples de criação de tabela Ele cria uma tabela com dois parâmetros id do tipo integer e name do tipo varchar.
 
-#### Raw Options
+#### Create Table Example
 ```lua
-local options = {
-    address = '127.0.0.1',
-    port = 28015,
-    user = 'admin',
-    password = '',
-    db = 'test',
-    reconnect = false,
-    reusable = false,
-    debug = false
-}
+mysql = require "luasql.mysql"
+local env  = mysql.mysql()
+local conn = env:connect('test','root','123456')
+print(env,conn)
+
+status,errorString = conn:execute([[CREATE TABLE sample2 (id INTEGER, name TEXT);]])
+print(status,errorString )
+
+```
+#### Quando você executa o programa acima, uma tabela chamada sample será criada com duas colunas, a saber, id e name.
+
+```lua
+MySQL environment (004BB178) MySQL connection (004BE3C8)
+0 nil
 ```
