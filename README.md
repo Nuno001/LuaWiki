@@ -2,64 +2,54 @@
 
 **Uma wiki escrita em portugues-PT-BR a todo tempo e a qualquer hora**
 
-### Introduction
+### Introdução
 
-**[Discord](https://discord.com/)** is a freeware, multi-platform, voice and text client. It has a [documented RESTful API](https://discord.com/developers/docs/intro) that allows developers to make Discord bots for use on their servers.
+**[Lua](https://www.lua.org/faq.html)** é uma linguagem de script poderosa, eficiente, leve e incorporável desenvolvida por uma equipe da PUC-Rio, a Pontifícia Universidade Católica do Rio de Janeiro no Brasil. Lua é um software livre usado em muitos produtos e projetos ao redor do mundo.
 
-**[Luvit](https://luvit.io)** is an open-source, asynchronous I/O Lua runtime environment. It is a combination of [LuaJIT](http://luajit.com/) and [libuv](http://libuv.org/), layered with various libraries to provide server-side functionality similar to that of [Node.js](https://nodejs.org/en/), but with Lua instead of JavaScript. Luvit's companion package manager, lit, makes it easy to set up the Luvit runtime and its published libraries.
+#### Como lua é implementada? <br> 
 
-Discordia is a Lua wrapper for the official Discord API, and provides a high-level, object-oriented, event-driven interface for developing Discord bots. By using Lua's native coroutines, asynchronous HTTP and WebSocket communication is internally abstracted in a way that allows end-users to write blocking-style code without blocking I/O operations.
+Lua consiste em duas partes - a parte do interpretador Lua e o sistema de software em funcionamento. O sistema de software em funcionamento é um aplicativo de computador real que pode interpretar programas escritos na linguagem de programação Lua. O interpretador Lua é escrito em ANSI C, portanto, é altamente portátil e pode ser executado em uma vasta gama de dispositivos, desde servidores de rede de ponta até dispositivos pequenos.
 
-Join the [Discord API](https://discord.gg/NKM3XmF) server to discuss Discordia and other Discord libraries!
 
-Join the independent [Discordia](https://discord.gg/EzRYYDW) server for more!
+Caso tenha dúvidas [Discord API](https://discord.gg/NKM3XmF) servidor para discutir sobre lua e outras bibliotecas do Discord! <br> 
+Caso não consiga entrar no discord [pt.stackoverflow](http://pt.stackoverflow.com/questions/tagged/lua) 
 
-### Installation
+### Instalação no windows
 
-- To install Luvit, visit https://luvit.io and follow the instructions provided for your platform.
-- To install Discordia, run `lit install SinisterRectus/discordia`
-- Run your bot script using, for example, `luvit bot.lua`
+Há um IDE separado chamado "SciTE" desenvolvido para o ambiente Windows, que pode ser baixado da seção https://code.google.com/p/luaforwindows/ download. 
+<br> Caso você esteja interessado em instalar Lua em modo de linha de comando, você precisa instalar MinGW ou Cygwin e então compilar e instalar Lua no Windows.
 
-### Example
+### Instalação no linux
+Para baixar e instalar lua, use o seguinte comando -
 
-```lua
-local discordia = require('discordia')
-local client = discordia.Client()
-
-client:on('ready', function()
-	print('Logged in as '.. client.user.username)
-end)
-
-client:on('messageCreate', function(message)
-	if message.content == '!ping' then
-		message.channel:send('Pong!')
-	end
-end)
-
-client:run('Bot INSERT_TOKEN_HERE')
+```linux
+$ wget http://www.lua.org/ftp/lua-5.2.3.tar.gz
+$ tar zxf lua-5.2.3.tar.gz
+$ cd lua-5.2.3
+$ make linux test
 ```
+Para instalar em outras plataformas como aix, ansi, bsd, generic linux, mingw, posix, solaris substituindo Linux em make Linux, teste com o nome da plataforma correspondente.
 
 ### Documentation
 
-Please visit this project's [Wiki](https://github.com/SinisterRectus/Discordia/wiki) for documentation and tutorials.
+Visite este projeto [Wiki](https://github.com/Nuno001/LuaWiki/wiki) para documentação e tutoriais.
 
 ### History
 
-The earliest version of Discordia, before it even had that name, was released as a [Just Cause 2 Multiplayer module](https://www.jc-mp.com/forums/index.php/topic,5936.0.html) on 7 March 2016. It utilized LuaSocket, LuaSec, and (eventually) Copas to provide basic REST functionality in a sandboxed Lua 5.2 environment. The goal was to bridge the game chat with a Discord client. Due to a lack of WSS support (at the time), the project was put on hold in favor of a general-purpose Lua library for Discord. After finishing a relatively stable version of Discordia, the JC2MP bridge was re-designed to connect with Discordia via inter-process communication.
+Lua é uma linguagem de programação extensível e leve escrita em C. Começou como um projeto interno em 1993 por Roberto Ierusalimschy, Luiz Henrique de Figueiredo e Waldemar Celes. <br> 
+Ele foi projetado desde o início para ser um software que pode ser integrado ao código escrito em C e outras linguagens convencionais. Essa integração traz muitos benefícios. Ele não tenta fazer o que C já pode fazer, mas visa oferecer o que C não é bom: uma boa distância do hardware, estruturas dinâmicas, sem redundâncias, facilidade de teste e depuração. Para isso, Lua possui um ambiente seguro, gerenciamento automático de memória e boas facilidades para manipulação de strings e outros tipos de dados com tamanho dinâmico.
 
 ### FAQs
 
-Why Lua?
-- Lua is a lightweight scripting language that tends to be beginner-friendly, but powerful in the hands of an advanced user at the same time. Although Lua might not have the same popularity as that of other scripting languages such as Python or JavaScript, Lua's expandability makes it equally as capable as the others, while remaining easy-to-use and often more resource efficient.
+Por que lua?
+- Lua é uma linguagem de script leve que tende a ser amigável para iniciantes, mas poderosa nas mãos de um usuário avançado ao mesmo tempo. Embora Lua possa não ter a mesma popularidade de outras linguagens de script, como Python ou JavaScript, a capacidade de expansão de Lua a torna tão capaz quanto as outras, enquanto permanece fácil de usar e geralmente mais eficiente em termos de recursos.
 
-Why Luvit?
-- Luvit makes Lua web development an easy task on multiple platforms. Its [installation](https://luvit.io/install.html) process is (optionally) automated and uses pre-built [luvi cores](https://github.com/luvit/luvi/releases) when available. It also comes with many libraries essential to async I/O programming and networking. Compared to Node.js, Luvit [advertises](https://luvit.io/blog/luvit-reborn.html) similar speed, but reduced memory consumption. Compared to other Discord libraries, Discordia is expected to perform well due Luvit's use of LuaJIT, although it has not been benchmarked.
+Existem outros tipos de sistemas em lua?
 
-Can I run this on a different Lua distribution?
-- The development and deployment of Discordia relies on the Luvit framework and its package manager. Porting Discordia and its dependencies to classic Lua or LuaJIT may be possible, but this is not a current project goal.
+Sim! existem os que vou citar abaixo:
+- [Luvit/Discordia](https://luvit.io/install.html) 
+- [FiveM] (https://docs.fivem.net/docs/scripting-manual/runtimes/lua/)
+- [Roblox] (https://developer.roblox.com/en-us/learn-roblox/coding-scripts)
 
-How can I contribute?
-- Pull requests are welcomed, but please check with the library author before starting a major implementation. Contributions to the Wiki are helpful, too.
-
-Are there other Discord libraries?
-- Absolutely. Check the official [libraries](https://discord.com/developers/docs/topics/community-resources) page of the Discord API documentation or the unofficial Discord API server linked above.
+Como posso ajudar a wiki?
+- Pull request são bem-vindas, mas verifique com o autor da biblioteca antes de iniciar uma grande implementação. Contribuições para a Wiki também são úteis.
