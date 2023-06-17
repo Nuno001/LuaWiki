@@ -1,6 +1,6 @@
 # LuaWiki
 
-**Uma wiki escrita em portugues-PT-BR a todo tempo e a qualquer hora**
+**Uma wiki escrita em português (PT-BR) a todo momento e a qualquer hora.**
 
 ### Introdução
 
